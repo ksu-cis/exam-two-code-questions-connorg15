@@ -6,7 +6,56 @@
              xmlns:local="clr-namespace:ExamTwoQuestions.PointOfSale"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <Style TargetType="Viewbox">
+            <Setter Property="Margin" Value="30"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        
+    </UserControl.Resources>
+    <StackPanel Background="LightCyan">
         <TextBlock>Customize Cobbler</TextBlock>
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock>Options</TextBlock>
+                
+                <Viewbox>
+                    <CheckBox IsChecked="{Binding Path=WithIceCream}">Ice Cream</CheckBox>
+                </Viewbox>
+                
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock>Fillings</TextBlock>
+                <Viewbox>
+                    <RadioButton GroupName="Filling" Name="BlueberryButton" Click="Filling_Selection_Clicked" Loaded="Radio_Load" Tag="Blueberry">Blueberry</RadioButton>
+                </Viewbox>
+
+                <Viewbox>
+                    <RadioButton GroupName="Filling" Name="CherryButton" Click="Filling_Selection_Clicked" Loaded="Radio_Load" Tag="Cherry">Cherry</RadioButton>
+                </Viewbox>
+
+                <Viewbox>
+                    <RadioButton GroupName="Filling" Name="PeachButton" Click="Filling_Selection_Clicked" Loaded="Radio_Load" Tag="Peach">Peach</RadioButton>
+                </Viewbox>
+                
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock>Price</TextBlock>
+                <TextBlock Text="{Binding Path=Price, StringFormat={}Price: {0:c}}"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </UserControl>

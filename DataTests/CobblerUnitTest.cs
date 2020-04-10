@@ -1,11 +1,73 @@
 using System;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
+using System.ComponentModel;
 
 namespace ExamTwoCodeQuestions.DataTests
 {
     public class CobblerUnitTests
     {
+        /// <summary>
+        /// Exam 2
+        /// </summary>
+        [Fact]
+        public void CobblerShouldImplementINotifyPropertyChanged()
+        {
+            var cobbler = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cobbler);
+        }
+        /// <summary>
+        /// Exam 2
+        /// </summary>
+        /// <param name="filling"></param>
+        [Theory]
+        [InlineData(FruitFilling.Blueberry)]
+        [InlineData(FruitFilling.Cherry)]
+        [InlineData(FruitFilling.Peach)]
+        public void ChangingFruitShouldInvokePropertyChangedForFruit(FruitFilling filling)
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Fruit", () =>
+            {
+                cobbler.Fruit = filling;
+            });
+        }
+        /// <summary>
+        /// Exam 2
+        /// </summary>
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForWithIceCream()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "WithIceCream", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+        }
+        /// <summary>
+        /// Exam 2
+        /// </summary>
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForSpeacialInstructions()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () =>
+            {
+                cobbler.WithIceCream = true;
+            });
+        }
+        /// <summary>
+        /// Exam 2
+        /// </summary>
+        [Fact]
+        public void ChangingWithIceaCreamShouldInbokePropertyChangedForPrice()
+        {
+            var cobbler = new Cobbler();
+            Assert.PropertyChanged(cobbler, "Price", () =>
+            {
+                cobbler.WithIceCream = true;
+            });
+        }
         [Theory]
         [InlineData(FruitFilling.Cherry)]
         [InlineData(FruitFilling.Blueberry)]

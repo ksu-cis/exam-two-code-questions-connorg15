@@ -52,7 +52,7 @@ namespace ExamTwoQuestions.PointOfSale
                 {
                     switch (radioButton.Tag)
                     {
-                        case "Blueerry":
+                        case "Blueberry":
                             cobbler.Fruit = FruitFilling.Blueberry;
                             break;
                         case "Cherry":
